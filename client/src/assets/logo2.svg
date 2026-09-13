@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Tailwind bg-gradient-to-tr from-purple-500 (#a855f7) to-emerald-500 (#10b981) for vibrant color transition -->
+    <linearGradient id="voxkit-gradient-v2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+
+    <!-- Professional 3D drop shadow for elevation and better contrast -->
+    <filter id="premium-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#000000" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- Perfectly Rounded Circular Background with enhanced gradient -->
+  <circle cx="250" cy="250" r="230" fill="url(#voxkit-gradient-v2)" />
+
+  <!-- Premium White Foreground "VK" Logo Mark with Wave Aesthetics -->
+  <g fill="#FFFFFF" filter="url(#premium-shadow)">
+    <!-- Modernized Letter 'V' (With angled cuts and smoother base integration) -->
+    <path d="M 125 160 
+             C 125 160, 164 160, 168 160 
+             L 205 272 
+             L 242 160 
+             C 246 160, 285 160, 285 160 
+             L 226 333 
+             C 222 345, 198 345, 194 333 Z" />
+
+    <!-- Sleek Interconnecting Signal Wave (connecting V to the K stem) -->
+    <path d="M 218 250 Q 235 250, 243 235 T 253 265 T 263 235 T 273 255 L 290 250" 
+          fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Dynamic Soundwave Style 'K' -->
+    <!-- Vertical stem as segmented audio bar -->
+    <rect x="295" y="152" width="12" height="196" rx="6" />
+    <rect x="312" y="165" width="10" height="170" rx="5" />
+
+    <!-- Top diagonal of 'K' (Geometric split bars) -->
+    <path d="M 334 230 L 372 165 C 375 160, 385 160, 390 165 L 420 165 C 420 165, 375 240, 372 245 Z" />
+    <!-- Additional outer echo / soundwave patterns for 3D depth in 'K' -->
+    <rect x="390" y="180" width="8" height="40" rx="4" transform="rotate(30 390 180)" />
+    <rect x="408" y="195" width="8" height="25" rx="4" transform="rotate(30 408 195)" />
+
+    <!-- Bottom diagonal of 'K' (Balanced with cuts) -->
+    <path d="M 334 254 L 378 335 C 382 342, 395 342, 400 335 L 425 335 C 425 335, 376 250, 372 245 Z" />
+    <rect x="390" y="280" width="8" height="40" rx="4" transform="rotate(-30 390 320)" />
+    <rect x="408" y="270" width="8" height="25" rx="4" transform="rotate(-30 408 295)" />
+
+    <!-- Modern Voice Wave Central Accent Line underneath (Replacing basic dot) -->
+    <path d="M 220 375 Q 235 375, 243 365 T 255 385 T 267 365 T 280 375" 
+          fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

@@ -1,0 +1,146 @@
+import React from "react";
+import { HiOutlineMicrophone, HiOutlineSparkles } from "react-icons/hi";
+import { HiOutlineBolt, HiOutlineCodeBracket } from "react-icons/hi2";
+import { FcGoogle } from "react-icons/fc";
+import logo from "../assets/logo.svg";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../utils/firebase";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ServerUrl } from "../App";
+
+function Login() {
+  const navigate = useNavigate();
+  const FEATURES = [
+    {
+      icon: <HiOutlineMicrophone />,
+      title: "Voice AI",
+      desc: "Natural real-time voice conversations.",
+    },
+    {
+      icon: <HiOutlineSparkles />,
+      title: "Smart Navigation",
+      desc: "Navigate pages using voice commands.",
+    },
+    {
+      icon: <HiOutlineCodeBracket />,
+      title: "Easy Embed",
+      desc: "Add assistant using one script tag.",
+    },
+    {
+      icon: <HiOutlineBolt />,
+      title: "Fast Responses",
+      desc: "Optimized Gemini AI responses.",
+    },
+  ];
+
+  const handleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const { displayName, email } = result.user;
+      const res = await axios.post(
+        ServerUrl + "/api/auth/google",
+        {
+          name: displayName,
+          email,
+        },
+        {
+          withCredentials: true,
+        },
+      );
+      console.log(res.data);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return (
+    <div className="min-h-screen bg-linear-to-br from-purple-50 via-white to-emerald-50 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 py-16 lg:py-24">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* left */}
+          <div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-200 bg-purple-100 text-purple-600 text-sm font-medium">
+              <HiOutlineSparkles />
+              AI Voice Assistant Platform
+            </div>
+
+            <h1 className="mt-8 text-5xl lg:text-7xl font-black leading-tight text-heading">
+              Build AI Assistants
+              <span className="block text-transparent bg-clip-text bg-linear-to-r from-primary to-secondary">
+                For any Website
+              </span>
+            </h1>
+
+            <p className="mt-8 text-lg text-body leading-8 max-w-2xl">
+              Create customizable AI voice assistants that talk, engage users,
+              and integrate into any website instantly.
+            </p>
+
+            <button
+              onClick={handleLogin}
+              className="mt-10 h-16 px-8 rounded-2xl bg-linear-to-r from-primary to-secondary text-white text-lg font-semibold flex items-center gap-4 shadow-[0_20px_80px_rgba(139,92,246,0.25)] hover:scale-[1.02] transition cursor-pointer"
+            >
+              <FcGoogle className="text-3xl bg-white rounded-full" />
+              Continue with Google
+            </button>
+
+            <p className="mt-4 text-sm text-muted">
+              Free plan includes 200 AI responses
+            </p>
+          </div>
+
+          {/* right */}
+          <div className="relative">
+            <div className="absolute inset-0 bg-linear-to-r from-purple-200/50 to-emerald-200/40 blur-[120px]" />
+
+            <div className="relative rounded-[40px] border border-black/5 bg-surface shadow-[0_20px_80px_rgba(0,0,0,0.06)] p-8 overflow-hidden">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="mt-2 text-3xl font-bold text-feature-heading">
+                    Features
+                  </h2>
+                </div>
+
+                <div className="w-16 h-16 rounded-3xl bg-linear-to-r from-primary to-secondary flex items-center justify-center shadow-[0_10px_40px_rgba(139,92,246,0.25)] p-3">
+                  <img
+                    src={logo}
+                    alt="logo"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </div>
+
+              <div className="mt-10 space-y-5">
+                {FEATURES.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="flex gap-5 rounded-3xl border border-black/5 bg-card p-5"
+                    >
+                      <div className="min-w-15 h-15 rounded-2xl bg-linear-to-r from-primary to-secondary text-white text-2xl flex items-center justify-center shadow-[0_10px_30px_rgba(139,92,246,0.20)]">
+                        {item.icon}
+                      </div>
+
+                      <div>
+                        <h3 className="text-heading text-lg font-semibold">
+                          {item.title}
+                        </h3>
+
+                        <p className="mt-2 text-sm leading-7 text-muted">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Login;
